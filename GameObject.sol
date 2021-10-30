@@ -6,7 +6,7 @@ import "InterfaceGameObject.sol";
 
 abstract contract GameObject is InterfaceGameObject {
 
-    string public name;
+    // string public name;
     int16 public healthPoints;
     int16 public armorPoints;
 
