@@ -10,7 +10,7 @@ contract Fortress is GameObject {
     int16 private constant FORTRESS_DEFAULT_HEALTH_POINTS = 500;
     int16 private constant FORTRESS_DEFAULT_ARMOR_POINTS = 10;
 
-    mapping (address => bool) public units;
+    mapping (address => string) public units;
 
     constructor() public {
         require(tvm.pubkey() != 0, 101);
@@ -21,9 +21,9 @@ contract Fortress is GameObject {
         setArmor(FORTRESS_DEFAULT_ARMOR_POINTS);
     }
 
-    function addUnit(address unitAddress) external {
+    function addUnit(address unitAddress, string unitName) external {
         tvm.accept();
-        units[unitAddress] = true;
+        units[unitAddress] = unitName;
     }
 
     function removeUnit(address unitAddress, address killerAddress) external {
@@ -37,7 +37,7 @@ contract Fortress is GameObject {
     function perish(address killerAddress) external override {
         tvm.accept();
 
-        optional(address, bool) currentUnit = units.min();
+        optional(address, string) currentUnit = units.min();
 
         while (currentUnit.hasValue()) {
             (address currentUnitAddress, ) = currentUnit.get();

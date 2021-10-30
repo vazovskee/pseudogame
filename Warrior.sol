@@ -6,8 +6,9 @@ import "BattleUnit.sol";
 
 contract Warrior is BattleUnit {
     
-    int16 constant WARRIOR_DEFAULT_ARMOR_POINTS = 5;
-    int16 constant WARRIOR_DEFAULT_ATACK_POWER = 10;
+    int16 private constant WARRIOR_DEFAULT_ARMOR_POINTS = 5;
+    int16 private constant WARRIOR_DEFAULT_ATACK_POWER = 10;
 
-    constructor(Fortress newFortress) BattleUnit(newFortress, WARRIOR_DEFAULT_ARMOR_POINTS, WARRIOR_DEFAULT_ATACK_POWER) public {}
+    constructor(string newName, Fortress newFortress)
+        BattleUnit(newName, newFortress, WARRIOR_DEFAULT_ARMOR_POINTS, WARRIOR_DEFAULT_ATACK_POWER) public {}
 }

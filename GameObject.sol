@@ -6,19 +6,14 @@ import "InterfaceGameObject.sol";
 
 abstract contract GameObject is InterfaceGameObject {
 
-    // string public name;
     int16 public healthPoints;
     int16 public armorPoints;
-
+ 
     function setHealth(int16 newHealthPoints) internal {
         healthPoints = newHealthPoints;
     }
 
     function setArmor(int16 newArmorPoints) internal {
-        armorPoints = newArmorPoints;
-    }
-
-    function setName(int16 newArmorPoints) internal {
         armorPoints = newArmorPoints;
     }
 
