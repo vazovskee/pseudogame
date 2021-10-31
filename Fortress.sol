@@ -29,6 +29,7 @@ contract Fortress is GameObject {
     function removeKilledUnit(address unitAddress, address killerAddress) external {
         tvm.accept(); 
         delete units[unitAddress];
+        // крепость без защитников автоматически разрушается
         if (units.empty()) {
             selfDestroyAndPay(killerAddress);
         }
