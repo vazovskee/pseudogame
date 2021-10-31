@@ -1,0 +1,84 @@
+{
+	"ABI version": 2,
+	"version": "2.2",
+	"header": ["time", "expire"],
+	"functions": [
+		{
+			"name": "constructor",
+			"inputs": [
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "addUnit",
+			"inputs": [
+				{"name":"unitAddress","type":"address"},
+				{"name":"unitName","type":"string"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "removeUnit",
+			"inputs": [
+				{"name":"unitAddress","type":"address"},
+				{"name":"killerAddress","type":"address"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "perish",
+			"inputs": [
+				{"name":"killerAddress","type":"address"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "takeDamage",
+			"inputs": [
+				{"name":"damagePoints","type":"int16"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "healthPoints",
+			"inputs": [
+			],
+			"outputs": [
+				{"name":"healthPoints","type":"int16"}
+			]
+		},
+		{
+			"name": "armorPoints",
+			"inputs": [
+			],
+			"outputs": [
+				{"name":"armorPoints","type":"int16"}
+			]
+		},
+		{
+			"name": "units",
+			"inputs": [
+			],
+			"outputs": [
+				{"name":"units","type":"map(address,string)"}
+			]
+		}
+	],
+	"data": [
+	],
+	"events": [
+	],
+	"fields": [
+		{"name":"_pubkey","type":"uint256"},
+		{"name":"_timestamp","type":"uint64"},
+		{"name":"_constructorFlag","type":"bool"},
+		{"name":"healthPoints","type":"int16"},
+		{"name":"armorPoints","type":"int16"},
+		{"name":"units","type":"map(address,string)"}
+	]
+}

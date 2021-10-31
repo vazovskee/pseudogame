@@ -1,0 +1,17 @@
+{
+    "name": "battle",
+    "version": "1.0.0",
+    "main": "index.js",
+    "scripts": {
+        "test": "mocha --timeout 10000 --exit"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "@tonclient/appkit": "^0",
+        "@tonclient/core": "^1",
+        "@tonclient/lib-node": "^1",
+        "mocha": "^9.1.3"
+    }
+}
