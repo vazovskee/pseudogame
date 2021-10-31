@@ -6,7 +6,6 @@
 		{
 			"name": "constructor",
 			"inputs": [
-				{"name":"newName","type":"string"},
 				{"name":"newFortress","type":"address"}
 			],
 			"outputs": [
@@ -53,14 +52,6 @@
 			]
 		},
 		{
-			"name": "name",
-			"inputs": [
-			],
-			"outputs": [
-				{"name":"name","type":"string"}
-			]
-		},
-		{
 			"name": "attackPower",
 			"inputs": [
 			],
@@ -87,7 +78,6 @@
 		{"name":"_constructorFlag","type":"bool"},
 		{"name":"healthPoints","type":"int16"},
 		{"name":"armorPoints","type":"int16"},
-		{"name":"name","type":"string"},
 		{"name":"attackPower","type":"int16"},
 		{"name":"primaryFortress","type":"address"}
 	]

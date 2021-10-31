@@ -7,25 +7,27 @@ import "InterfaceBattleUnit.sol";
 
 contract Fortress is GameObject {
 
-    int16 private constant FORTRESS_DEFAULT_HEALTH_POINTS = 500;
+    int16 private constant FORTRESS_DEFAULT_HEALTH_POINTS = 100;
     int16 private constant FORTRESS_DEFAULT_ARMOR_POINTS = 10;
 
-    mapping (address => string) public units;
+    mapping (address => bool) public units; // хранит всех юнитов
 
     constructor() public {
         require(tvm.pubkey() != 0, 101);
         require(msg.pubkey() == tvm.pubkey(), 102);
         tvm.accept();
 
-        setHealth(FORTRESS_DEFAULT_HEALTH_POINTS);
-        setArmor(FORTRESS_DEFAULT_ARMOR_POINTS);
+        setHealthPoints(FORTRESS_DEFAULT_HEALTH_POINTS);
+        setArmorPoints(FORTRESS_DEFAULT_ARMOR_POINTS);
     }
 
-    function addUnit(address unitAddress, string unitName) external {
+    // добавляет юнита
+    function addUnit(address unitAddress) external {
         tvm.accept();
-        units[unitAddress] = unitName;
+        units[unitAddress] = true;
     }
 
+    // удаляет юнита (и крепость, если юнитов не осталось)
     function removeKilledUnit(address unitAddress, address killerAddress) external {
         tvm.accept(); 
         delete units[unitAddress];
@@ -35,17 +37,16 @@ contract Fortress is GameObject {
         }
     }
     
+    // уничтожает крепость и всех юнитов, привязанных к ней
     function perish(address killerAddress) external override {
         tvm.accept();
 
-        optional(address, string) currentUnit = units.min();
+        optional(address, bool) currentUnit = units.min();
 
         while (currentUnit.hasValue()) {
             (address currentUnitAddress, ) = currentUnit.get();
             InterfaceBattleUnit(currentUnitAddress).perish(killerAddress);
             currentUnit = units.next(currentUnitAddress);
         }
-
-        selfDestroyAndPay(killerAddress);
     }
 }

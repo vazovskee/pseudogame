@@ -13,8 +13,7 @@
 		{
 			"name": "addUnit",
 			"inputs": [
-				{"name":"unitAddress","type":"address"},
-				{"name":"unitName","type":"string"}
+				{"name":"unitAddress","type":"address"}
 			],
 			"outputs": [
 			]
@@ -65,7 +64,7 @@
 			"inputs": [
 			],
 			"outputs": [
-				{"name":"units","type":"map(address,string)"}
+				{"name":"units","type":"map(address,bool)"}
 			]
 		}
 	],
@@ -79,6 +78,6 @@
 		{"name":"_constructorFlag","type":"bool"},
 		{"name":"healthPoints","type":"int16"},
 		{"name":"armorPoints","type":"int16"},
-		{"name":"units","type":"map(address,string)"}
+		{"name":"units","type":"map(address,bool)"}
 	]
 }

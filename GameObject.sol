@@ -4,17 +4,18 @@ pragma AbiHeader expire;
 
 import "InterfaceGameObject.sol";
 
+// используется абстрактный контракт, т.к. для него не предполагается создание экземпляров
 abstract contract GameObject is InterfaceGameObject {
 
     int16 public healthPoints;
     int16 public armorPoints;
  
-    function setHealth(int16 newHealthPoints) internal {
+    function setHealthPoints(int16 newHealthPoints) internal {
         tvm.accept();
         healthPoints = newHealthPoints;
     }
 
-    function setArmor(int16 newArmorPoints) internal {
+    function setArmorPoints(int16 newArmorPoints) internal {
         tvm.accept();
         armorPoints = newArmorPoints;
     }
@@ -23,19 +24,22 @@ abstract contract GameObject is InterfaceGameObject {
         return healthPoints <= 0;
     }
     
+    // виртуальная функция для уничтожения игрового объекта 
     function perish(address killerAddress) virtual external;
 
+    // функция, передающая урон объекту
     function takeDamage(int16 damagePoints) external override {
         tvm.accept();
         address killerAddress = msg.sender;
         if (damagePoints > armorPoints) {
-            setHealth(healthPoints + armorPoints - damagePoints);
+            setHealthPoints(healthPoints + armorPoints - damagePoints);
         }
         if (isEliminated()) {
-            this.perish(killerAddress);
+            this.perish(killerAddress); // уничтожает объект, если у него не осталось здоровья 
         }
     }
 
+    // уничтожает контракт и переводит все кристаллы по адресу killerAddress
     function selfDestroyAndPay(address killerAddress) internal pure {
         tvm.accept();
         killerAddress.transfer(0, true, 160);

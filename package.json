@@ -1,5 +1,5 @@
 {
-    "name": "battle",
+    "name": "game_two_forts",
     "version": "1.0.0",
     "main": "index.js",
     "scripts": {
