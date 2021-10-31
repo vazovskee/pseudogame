@@ -10,10 +10,12 @@ abstract contract GameObject is InterfaceGameObject {
     int16 public armorPoints;
  
     function setHealth(int16 newHealthPoints) internal {
+        tvm.accept();
         healthPoints = newHealthPoints;
     }
 
     function setArmor(int16 newArmorPoints) internal {
+        tvm.accept();
         armorPoints = newArmorPoints;
     }
 
@@ -27,7 +29,7 @@ abstract contract GameObject is InterfaceGameObject {
         tvm.accept();
         address killerAddress = msg.sender;
         if (damagePoints > armorPoints) {
-            healthPoints += armorPoints - damagePoints;
+            setHealth(healthPoints + armorPoints - damagePoints);
         }
         if (isEliminated()) {
             this.perish(killerAddress);

@@ -26,14 +26,14 @@ contract Fortress is GameObject {
         units[unitAddress] = unitName;
     }
 
-    function removeUnit(address unitAddress, address killerAddress) external {
+    function removeKilledUnit(address unitAddress, address killerAddress) external {
         tvm.accept(); 
         delete units[unitAddress];
         if (units.empty()) {
             selfDestroyAndPay(killerAddress);
         }
     }
-
+    
     function perish(address killerAddress) external override {
         tvm.accept();
 

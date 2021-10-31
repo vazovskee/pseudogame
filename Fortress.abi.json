@@ -20,7 +20,7 @@
 			]
 		},
 		{
-			"name": "removeUnit",
+			"name": "removeKilledUnit",
 			"inputs": [
 				{"name":"unitAddress","type":"address"},
 				{"name":"killerAddress","type":"address"}

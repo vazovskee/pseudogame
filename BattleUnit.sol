@@ -10,7 +10,7 @@ abstract contract BattleUnit is GameObject, InterfaceBattleUnit {
 
     int16 private constant UNIT_DEFAULT_HEALTH_POINTS = 50;
 
-    string public name;
+    string public name; // useless
     int16 public attackPower;
     Fortress public primaryFortress;
 
@@ -29,10 +29,12 @@ abstract contract BattleUnit is GameObject, InterfaceBattleUnit {
     }
 
     function setName(string newName) internal {
+        tvm.accept();
         name = newName;
     }
 
     function setAttack(int16 newAttackPower) internal {
+        tvm.accept();
         attackPower = newAttackPower;
     }
 
@@ -44,6 +46,6 @@ abstract contract BattleUnit is GameObject, InterfaceBattleUnit {
     function perish(address killerAddress) external override(GameObject, InterfaceBattleUnit) {
         tvm.accept();
         selfDestroyAndPay(killerAddress);
-        primaryFortress.removeUnit(address(this), killerAddress);
+        primaryFortress.removeKilledUnit(address(this), killerAddress);
     }
 }
